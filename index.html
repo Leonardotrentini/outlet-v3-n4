@@ -3,28 +3,34 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Outlet Camisetas – camisetas no atacado com alta margem de lucro. Comece seu negócio hoje.">
   <title>Outlet Camisetas – Rotacionador</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="preload" href="assets/BG-1.webp" as="image" type="image/webp" fetchpriority="high">
+  <link rel="preload" href="assets/LOGO.webp" as="image" type="image/webp" fetchpriority="high">
+  <link rel="preload" href="fonts/montserrat-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="fonts/montserrat.css">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
   <!-- Hero -->
   <section class="hero">
+    <img class="hero__bg" src="assets/BG-1.webp" alt="" width="1920" height="500" fetchpriority="high" decoding="async">
     <div class="hero__content">
       <h1 class="hero__title">Comece seu negócio ainda hoje com o produto campeão e mais procurado em todo Brasil!</h1>
       <p class="hero__subtitle">Só aqui na Outlet Camisetas você encontra as camisetas mais procuradas do mercado com preço justo e alta qualidade, podendo mesclar entre vários produtos, revenda com 100% de margem de lucro.</p>
-      <button class="btn btn--gold btn-rotator">Conhecer produtos</button>
+      <button class="btn btn--gold btn-rotator" type="button">Conhecer produtos</button>
     </div>
     <div class="hero__logo">
-      <img src="assets/LOGO.png" alt="Outlet Camisetas" width="424" height="423">
+      <picture>
+        <source srcset="assets/LOGO.webp" type="image/webp">
+        <img src="assets/LOGO.png" alt="Outlet Camisetas" width="424" height="423" fetchpriority="high" decoding="async">
+      </picture>
     </div>
   </section>
 
   <!-- Benefícios -->
-  <section class="section section--gradient">
+  <section class="section section--gradient defer-section">
     <h2 class="section__title section__title--dark">Benefícios em comprar<br>na Outlet Camisetas</h2>
     <div class="benefits-grid">
       <div class="benefit-card">
@@ -55,7 +61,7 @@
   </section>
 
   <!-- Produtos carousel -->
-  <section class="section section--dark carousel-section">
+  <section class="section section--dark carousel-section defer-section" id="carousel-section">
     <h2 class="section__title section__title--gold">Conheça nossos produtos</h2>
     <div class="carousel">
       <div class="carousel__track" id="carousel-track">
@@ -65,7 +71,7 @@
   </section>
 
   <!-- Por que escolher -->
-  <section class="section section--gradient">
+  <section class="section section--gradient defer-section">
     <div class="why-us">
       <div class="why-us__text">
         <h2 class="why-us__title">Por que escolher a Outlet camisetas?</h2>
@@ -73,16 +79,19 @@
           <p>Nós da Outlet estamos neste mercado a mais de 08 anos, mudando e impactando de forma positiva inúmeros Brasileiros que desejam iniciar seu negócio e mudar de vida, essa trajetória nos fez entender tudo que você precisa para ter sucesso nesse mercado.</p>
           <p>Essa é nossa proposta, te entregar tudo que você precisa para que tenha êxito em suas vendas e no seu negócio, comece já com o pé direito!</p>
         </div>
-        <button class="btn btn--green btn-rotator">Conhecer produtos</button>
+        <button class="btn btn--green btn-rotator" type="button">Conhecer produtos</button>
       </div>
       <div class="why-us__phone">
-        <img src="assets/CELULAR.png" alt="App Outlet Camisetas" width="702" height="650">
+        <picture>
+          <source srcset="assets/CELULAR.webp" type="image/webp">
+          <img src="assets/CELULAR.png" alt="App Outlet Camisetas" width="702" height="650" loading="lazy" decoding="async">
+        </picture>
       </div>
     </div>
   </section>
 
   <!-- FAQ -->
-  <section class="section section--gradient section--faq">
+  <section class="section section--gradient section--faq defer-section">
     <h2 class="section__title section__title--dark">Perguntas Frequentes</h2>
     <div class="faq">
       <details class="faq__item">
@@ -112,6 +121,6 @@
     <p>Todos os direitos reservados – Grupo OutletCamisetas</p>
   </footer>
 
-  <script src="script.js"></script>
+  <script src="script.js" defer></script>
 </body>
 </html>

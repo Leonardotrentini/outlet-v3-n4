@@ -1,32 +1,56 @@
 const PRODUCTS = [
-  'Design-sem-nome-15-2.png',
-  'Design-sem-nome-12-2.png',
-  'Design-sem-nome-11-2.png',
-  'Design-sem-nome-10-2.png',
-  'Design-sem-nome-9-2.png',
-  'Design-sem-nome-8-2.png',
-  'Design-sem-nome-7-2.png',
-  'Design-sem-nome-6-2.png',
-  'Design-sem-nome-5-2.png',
+  'Design-sem-nome-15-2.webp',
+  'Design-sem-nome-12-2.webp',
+  'Design-sem-nome-11-2.webp',
+  'Design-sem-nome-10-2.webp',
+  'Design-sem-nome-9-2.webp',
+  'Design-sem-nome-8-2.webp',
+  'Design-sem-nome-7-2.webp',
+  'Design-sem-nome-6-2.webp',
+  'Design-sem-nome-5-2.webp',
 ];
+
+const SLIDE_WIDTH = 240;
+const SLIDE_HEIGHT = 340;
 
 function buildCarousel() {
   const track = document.getElementById('carousel-track');
-  if (!track) return;
+  if (!track || track.dataset.ready) return;
+  track.dataset.ready = '1';
 
   const slides = [...PRODUCTS, ...PRODUCTS];
   track.innerHTML = slides
     .map(
       (file) =>
-        `<div class="carousel__slide"><img src="assets/${file}" alt="Produto Outlet Camisetas" loading="lazy"></div>`
+        `<div class="carousel__slide"><img src="assets/${file}" alt="Produto Outlet Camisetas" width="${SLIDE_WIDTH}" height="${SLIDE_HEIGHT}" loading="lazy" decoding="async"></div>`
     )
     .join('');
 }
 
+function initLazyCarousel() {
+  const section = document.getElementById('carousel-section');
+  if (!section) return;
+
+  if (!('IntersectionObserver' in window)) {
+    buildCarousel();
+    return;
+  }
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      if (entries.some((entry) => entry.isIntersecting)) {
+        buildCarousel();
+        observer.disconnect();
+      }
+    },
+    { rootMargin: '200px' }
+  );
+
+  observer.observe(section);
+}
+
 function redirectTo(url) {
   if (!url) return;
-  // window.open após fetch async é bloqueado no mobile (Safari/Chrome).
-  // Redirecionar na mesma aba abre o WhatsApp direto no celular.
   window.location.assign(url);
 }
 
@@ -61,5 +85,5 @@ function initRotator() {
   });
 }
 
-buildCarousel();
+initLazyCarousel();
 initRotator();

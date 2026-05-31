@@ -3,7 +3,7 @@
 html { scroll-behavior: smooth; }
 
 body {
-  font-family: "Montserrat", sans-serif;
+  font-family: "Montserrat", system-ui, -apple-system, sans-serif;
   color: #000;
   line-height: 1.4;
   overflow-x: hidden;
@@ -15,13 +15,30 @@ a { text-decoration: none; color: inherit; }
 
 /* ── Hero ── */
 .hero {
+  position: relative;
+  isolation: isolate;
   min-height: 500px;
-  background: url("assets/BG-1.jpg") top center / cover no-repeat;
   display: flex;
   flex-direction: column-reverse;
   align-items: center;
   justify-content: center;
   padding: 30px 0 20px;
+  overflow: hidden;
+}
+
+.hero__bg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+
+.hero > :not(.hero__bg) {
+  position: relative;
+  z-index: 1;
 }
 
 .hero__logo img {
@@ -91,7 +108,12 @@ a { text-decoration: none; color: inherit; }
 }
 
 .section--dark {
-  background: url("assets/BG-1.jpg") center / cover no-repeat;
+  background: url("assets/BG-1.webp") center / cover no-repeat;
+}
+
+.defer-section {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 500px;
 }
 
 .section__title {
@@ -178,6 +200,8 @@ a { text-decoration: none; color: inherit; }
 .carousel__slide img {
   border-radius: 8px;
   width: 100%;
+  height: auto;
+  aspect-ratio: 240 / 340;
   object-fit: cover;
 }
 
