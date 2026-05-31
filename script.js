@@ -23,19 +23,39 @@ function buildCarousel() {
     .join('');
 }
 
+function redirectTo(url) {
+  if (!url) return;
+  // window.open após fetch async é bloqueado no mobile (Safari/Chrome).
+  // Redirecionar na mesma aba abre o WhatsApp direto no celular.
+  window.location.assign(url);
+}
+
 function initRotator() {
   document.querySelectorAll('.btn-rotator').forEach((btn) => {
+    const label = btn.textContent.trim();
+    let loading = false;
+
     btn.addEventListener('click', (e) => {
       e.preventDefault();
-      btn.disabled = true;
+      if (loading) return;
+      loading = true;
+      btn.textContent = 'Aguarde...';
+
       fetch('https://outletcamisetas.com.br/wp-json/rotador/v1/next')
-        .then((res) => res.json())
-        .then((data) => {
-          if (data.url) window.open(data.url, '_blank');
+        .then((res) => {
+          if (!res.ok) throw new Error('API error');
+          return res.json();
         })
-        .catch(() => {})
-        .finally(() => {
-          btn.disabled = false;
+        .then((data) => {
+          if (data.url) {
+            redirectTo(data.url);
+            return;
+          }
+          throw new Error('URL missing');
+        })
+        .catch(() => {
+          btn.textContent = label;
+          loading = false;
         });
     });
   });
