@@ -65,6 +65,10 @@ function initRotator() {
       loading = true;
       btn.textContent = 'Aguarde...';
 
+      if (typeof window.trackMetaLead === 'function') {
+        window.trackMetaLead();
+      }
+
       fetch('https://outletcamisetas.com.br/wp-json/rotador/v1/next')
         .then((res) => {
           if (!res.ok) throw new Error('API error');
