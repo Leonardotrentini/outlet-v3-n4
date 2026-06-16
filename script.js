@@ -22,7 +22,7 @@ function buildCarousel() {
   track.innerHTML = slides
     .map(
       (file) =>
-        `<div class="carousel__slide"><img src="assets/${file}" alt="Produto Outlet Camisetas" width="${SLIDE_WIDTH}" height="${SLIDE_HEIGHT}" loading="lazy" decoding="async"></div>`
+        `<div class="carousel__slide"><img src="/assets/${file}" alt="Produto Outlet Camisetas" width="${SLIDE_WIDTH}" height="${SLIDE_HEIGHT}" loading="lazy" decoding="async"></div>`
     )
     .join('');
 }
