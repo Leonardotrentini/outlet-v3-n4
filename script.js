@@ -54,6 +54,14 @@ function redirectTo(url) {
   window.location.assign(url);
 }
 
+function getRotadorPool() {
+  if (window.ROTADOR_POOL) return window.ROTADOR_POOL;
+  if (window.location.pathname.includes('rotacionador-grupos-antigos')) {
+    return 'grupos-antigos';
+  }
+  return 'default';
+}
+
 function initRotator() {
   document.querySelectorAll('.btn-rotator').forEach((btn) => {
     const label = btn.textContent.trim();
@@ -69,7 +77,8 @@ function initRotator() {
         window.trackMetaLead();
       }
 
-      fetch('https://outletcamisetas.com.br/wp-json/rotador/v1/next')
+      const pool = getRotadorPool();
+      fetch(`/api/rotador/next?pool=${encodeURIComponent(pool)}`)
         .then((res) => {
           if (!res.ok) throw new Error('API error');
           return res.json();
