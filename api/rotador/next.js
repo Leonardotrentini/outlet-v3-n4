@@ -15,6 +15,11 @@ const POOLS = {
     ],
     option_key: 'ta_rotador_idx_grupos_antigos',
   },
+  'grupo-novo': {
+    tipo: 'grupo',
+    destinos: ['https://chat.whatsapp.com/LBZlQRdMQd4A1sWPyFUsAD'],
+    option_key: 'ta_rotador_idx_grupo_novo',
+  },
 };
 
 const memoryCounters = new Map();

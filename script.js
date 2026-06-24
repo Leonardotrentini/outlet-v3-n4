@@ -56,9 +56,9 @@ function redirectTo(url) {
 
 function getRotadorPool() {
   if (window.ROTADOR_POOL) return window.ROTADOR_POOL;
-  if (window.location.pathname.includes('rotacionador-grupos-antigos')) {
-    return 'grupos-antigos';
-  }
+  const path = window.location.pathname;
+  if (path.includes('rotacionador-grupos-antigos')) return 'grupos-antigos';
+  if (path.includes('grupo-novo')) return 'grupo-novo';
   return 'default';
 }
 
